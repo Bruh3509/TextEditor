@@ -5,7 +5,7 @@ FileOperations::FileOperations()
 
 FileOperations::FileOperations(const std::string &path)
 {
-    file.open(path, std::ios::out | std::ios::in | std::ios::app);
+    file.open(path, std::ios::out | std::ios::in);
 }
 
 FileOperations::~FileOperations()
@@ -33,7 +33,7 @@ void FileOperations::writeFile(const std::string &res)
         std::unique_ptr<CreateNewFile> diag = std::make_unique<CreateNewFile>();
 
         if (diag->exec() == QDialog::Accepted) {
-            file.open(diag->getFileName(), std::ios::out);
+            file.open(diag->getFileName(), std::ios::in | std::ios::out);
             file << res;
         }
     }
