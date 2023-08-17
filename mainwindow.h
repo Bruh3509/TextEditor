@@ -4,6 +4,11 @@
 #include <QMainWindow>
 #include <QMenu>
 #include <QMenuBar>
+#include <QMessageBox>
+#include <QDebug>
+#include <memory>
+#include <inputdialog.h>
+#include <fileoperations.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,5 +24,12 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    std::string curPathName;
+    std::unique_ptr<FileOperations> curFile;
+    std::string loadFile();
+
+private slots:
+    void setupFile();
+    void writeFile();
 };
 #endif // MAINWINDOW_H
