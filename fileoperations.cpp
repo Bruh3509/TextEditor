@@ -1,15 +1,16 @@
 #include "fileoperations.h"
 
-FileOperations::FileOperations()
+FileOperations::FileOperations() : path()
 {}
 
-FileOperations::FileOperations(const std::string &path)
+FileOperations::FileOperations(const std::string &path) : path(path)
 {
-    file.open(path, std::ios::out | std::ios::in);
+    file.open(path, std::ios::in);
 }
 
 FileOperations::~FileOperations()
 {
+    file.flush();
     file.close();
 }
 
@@ -22,18 +23,22 @@ std::string FileOperations::getData()
     std::string buf;
     while(std::getline(file, buf))
         res += buf;
+
+    file.close();
     return res;
 }
 
 void FileOperations::writeFile(const std::string &res)
 {
-    if (file.is_open())
+    if (path != "") {
+        file.open(path, std::ios::out);
         file << res;
+    }
     else {
         std::unique_ptr<CreateNewFile> diag = std::make_unique<CreateNewFile>();
 
         if (diag->exec() == QDialog::Accepted) {
-            file.open(diag->getFileName(), std::ios::in | std::ios::out);
+            file.open(diag->getFileName(), std::ios::out);
             file << res;
         }
     }

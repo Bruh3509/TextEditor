@@ -22,6 +22,7 @@ public:
 
 private:
     std::fstream file;
+    std::string path;
 };
 
 #endif // FILEOPERATIONS_H
