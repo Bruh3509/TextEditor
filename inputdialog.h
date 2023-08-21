@@ -9,10 +9,11 @@
 class InputDialog : public QDialog
 {
 public:
-    InputDialog(QWidget *parent = 0);
-    std::string getPath() const;
+    InputDialog(QWidget *parent = nullptr);
+    InputDialog(const std::string&, QWidget *parent = nullptr);
+    std::string getData() const;
 private:
-    QLineEdit *pathName;
+    QLineEdit *data;
 };
 
 #endif // INPUTDIALOG_H

@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QDebug>
 #include <memory>
+#include <algorithm>
 #include <inputdialog.h>
 #include <fileoperations.h>
 
@@ -31,5 +32,6 @@ private:
 private slots:
     void setupFile();
     void writeFile();
+    void findIn();
 };
 #endif // MAINWINDOW_H
