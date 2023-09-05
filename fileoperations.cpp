@@ -22,7 +22,7 @@ std::string FileOperations::getData()
     std::string res;
     std::string buf;
     while(std::getline(file, buf))
-        res += buf;
+        res += buf + '\n';
 
     file.close();
     return res;
